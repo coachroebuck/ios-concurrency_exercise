@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BD4775CD2E2024230066D24E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = BD4775CC2E2024230066D24E /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		BD4775A42E1F63770066D24E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		BD4775942E1F63760066D24E /* Concurrency Exercise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Concurrency Exercise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD4775A32E1F63770066D24E /* Concurrency ExerciseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Concurrency ExerciseTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD4775AD2E1F63770066D24E /* Concurrency ExerciseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Concurrency ExerciseUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD4775CC2E2024230066D24E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		BD47758B2E1F63760066D24E = {
 			isa = PBXGroup;
 			children = (
+				BD4775CC2E2024230066D24E /* README.md */,
 				BD4775962E1F63760066D24E /* Concurrency Exercise */,
 				BD4775A62E1F63770066D24E /* Concurrency ExerciseTests */,
 				BD4775B02E1F63770066D24E /* Concurrency ExerciseUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD4775CD2E2024230066D24E /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
