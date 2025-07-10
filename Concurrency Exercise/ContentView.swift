@@ -11,6 +11,8 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
+    let raceyCounter = RaceyCounter()
+    let safeCounter = SafeCounter()
     let store = ItemStore()
 
     var body: some View {
@@ -34,6 +36,23 @@ struct ContentView: View {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
+                ToolbarItem {
+                    Button("Use Store") {
+                        Task {
+                            await store.recordAccess()
+                        }
+                    }
+                }
+                ToolbarItem {
+                    Button("Race Condition") {
+                        triggerRaceCondition()
+                    }
+                }
+                ToolbarItem {
+                    Button("Fix Condition") {
+                        triggerSafeCondition()
+                    }
+                }
             }
         } detail: {
             Text("Select an item")
@@ -54,6 +73,36 @@ struct ContentView: View {
             }
         }
     }
+    private func triggerRaceCondition() {
+        raceyCounter.count = 0
+
+        for _ in 0..<1000 {
+            Task.detached {
+                await raceyCounter.increment()
+            }
+        }
+
+        Task {
+            try? await Task.sleep(nanoseconds: 1_000_000_000)
+            print("Final count: \(raceyCounter.count)") // Should be 1000 — but won’t be
+        }
+    }
+    private func triggerSafeCondition() {
+        Task {
+            for _ in 0..<1000 {
+                Task.detached {
+                    await safeCounter.increment()
+                }
+            }
+
+            // Wait before checking final count
+            try? await Task.sleep(nanoseconds: 1_000_000_000)
+
+            let finalCount = await safeCounter.count
+            print("✅ Safe final count: \(finalCount)")
+        }
+    }
+
 }
 
 #Preview {
